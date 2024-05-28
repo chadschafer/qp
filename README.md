@@ -7,18 +7,29 @@ Quantile parametrization for probability distribution functions.
 ![Read the Docs](https://img.shields.io/readthedocs/qp)
 
 ## Motivation
-This repository exists for two reasons.
 
-1. To be the home of `qp`, a python package for handling probability distributions using various parametrizations, including a set of quantiles;
-2. To help us learn best practices in software carpentry.
+In a scientific inference we typically seek to characterize the posterior probability density function (PDF) for our parameter(s), which means we need to fund a suitable, calculable approximation to it. Popular choices include an ensemble of samples, a histogram estimator based on those samples, or (in 1 dimensional problems) a tabulation of the PDF on a regular parameter grid. qp is a python package that supports these approximations, as well as the “quantile parameterization” from which the package gets its name.
+
+The [scipy.stats](https://docs.scipy.org/doc/scipy/reference/stats.html) package provides an interface to many probability distributions for parameterized analytic forms (e.g., Gaussians, LogNormal Distributions, etc...)  `qp` extends that functionality to numerically-evaluated forms, such as the histograms and interpolated grids mentioned above.
+
+
 
 ## Examples
+
+Here are some example notebooks to help new users explore `qp` functionality.
 
 * **[Basic Demo](http://htmlpreview.github.io/?https://github.com/LSSTDESC/qp/blob/master/docs/demo.html)** [(raw notebook)](https://github.com/LSSTDESC/qp/blob/master/nb/demo.ipynb)
 
 * **[Practical Example](http://htmlpreview.github.io/?https://github.com/LSSTDESC/qp/blob/master/docs/practical_example.html)** [(raw notebook)](https://github.com/LSSTDESC/qp/blob/master/nb/practical_example.ipynb)
 
-Also: [Read the Docs](http://qp.readthedocs.io/)
+* **[Using Metrics](http://htmlpreview.github.io/?https://github.com/LSSTDESC/qp/blob/master/docs/metrics_examples.html)** [(raw notebook)](https://github.com/LSSTDESC/qp/blob/master/nb/metrics_examples.ipynb)
+
+* **[Using iterarors](http://htmlpreview.github.io/?https://github.com/LSSTDESC/qp/blob/master/docs/iterator_demo.html)** [(raw notebook)](https://github.com/LSSTDESC/qp/blob/master/nb/iterator_demo.ipynb)
+
+* **[Quantile parameterization](http://htmlpreview.github.io/?https://github.com/LSSTDESC/qp/blob/master/docs/quantile_parameterization_demo.html)** [(raw notebook)](https://github.com/LSSTDESC/qp/blob/master/nb/quantile_parameterization_demo.ipynb)
+
+
+Also the read the docs page has significantly more information:  [Read the Docs](http://qp.readthedocs.io/)
 
 
 ## People
