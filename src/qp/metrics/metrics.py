@@ -124,7 +124,7 @@ def calculate_kld(p, q, limits, dx=0.01):
     )  # np.dot(pn * logquotient, np.ones(len(grid)) * dx)
 
     if np.any(Dpq < 0.0):  # pragma: no cover
-        print("broken KLD: " + str((Dpq, pn, qn, grid.resolution)))
+        print("broken CMS KLD: " + str((Dpq, pn, qn, grid.resolution)))
         Dpq = epsilon * np.ones(Dpq.shape)
     return Dpq
 
