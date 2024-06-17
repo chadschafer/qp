@@ -213,7 +213,13 @@ class quant_gen(Pdf_rows_gen):  # pylint: disable=too-many-instance-attributes
         # normalization function.
         # See qp issue #147
         row = args[0]
-        return self._pdf_constructor.construct_pdf(x, row)
+        tmp = self._pdf_constructor.construct_pdf(x, row)
+        tmp[tmp<0.0] = epsilon
+        if(len(x) > 1):
+           return tmp/sum(tmp)/(max(x)-min(x))
+        else:
+           return tmp
+#       return self._pdf_constructor.construct_pdf(x, row)
 
     def _cdf(self, x, row):
         # pylint: disable=arguments-differ

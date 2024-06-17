@@ -118,14 +118,37 @@ def calculate_kld(p, q, limits, dx=0.01):
     qe = q.gridded(grid.grid_values)
     qn = qe[1]
 
+    if np.any(pn<epsilon):
+       print("Negative Values in pn" + str(np.where(pn<epsilon)))
+    if np.any(qn<epsilon):
+       print("Negative Values in qn" + str(np.where(qn<epsilon)))
+
+
     # Calculate the KLD from q to p
     Dpq = array_metrics.quick_kld(
         pn, qn, grid.resolution
     )  # np.dot(pn * logquotient, np.ones(len(grid)) * dx)
 
+    print(np.sum(pn,1))
+    print(np.sum(qn,1))
     if np.any(Dpq < 0.0):  # pragma: no cover
-        print("broken CMS KLD: " + str((Dpq, pn, qn, grid.resolution)))
-        Dpq = epsilon * np.ones(Dpq.shape)
+        print("Warning: Negative values calculated for K-L Divergence")
+        print("Calculated K-L Divergences:")
+        print(Dpq)
+        print("Reference Distribution:")
+        print(pn)
+        print("Comparing Distribution:")
+        print(qn)
+        print("Grid Resolution:")
+        print(grid.resolution)
+        print("Minimal K-L Divergence:")
+        print(min(Dpq))
+
+        Dpq[Dpq<0] = epsilon
+#       print("broken 6 KLD: " + str((Dpq, pn, qn, grid.resolution)))
+#       Dpq = epsilon * np.ones(Dpq.shape)
+
+
     return Dpq
 
 
