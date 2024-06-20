@@ -118,6 +118,9 @@ def calculate_kld(p, q, limits, dx=0.01):
     qe = q.gridded(grid.grid_values)
     qn = qe[1]
 
+    pn = (pn.T/pn.sum(1)).T
+    qn = (qn.T/qn.sum(1)).T
+
     if np.any(pn<epsilon):
        print("Negative Values in pn" + str(np.where(pn<epsilon)))
     if np.any(qn<epsilon):
