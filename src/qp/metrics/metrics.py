@@ -118,7 +118,7 @@ def calculate_kld(p, q, limits, dx=0.01):
     qe = q.gridded(grid.grid_values)
     qn = qe[1]
 
-# CMS ADDED THESE LINES TO ENFOCED NORMALIZATION
+# CMS ADDED THESE LINES TO ENFORCED NORMALIZATION
     pn = (pn.T/pn.sum(1)).T
     qn = (qn.T/qn.sum(1)).T
 
