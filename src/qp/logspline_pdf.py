@@ -248,8 +248,8 @@ class spline_gen(Pdf_rows_gen):
     def _pdf(self, x, row):
         # pylint: disable=arguments-differ
         def pdf_row(xv, irow):
-            return np.exp(splev(
-                xv, (self._splx[irow], np.log(self._sply[irow]), self._spln[irow].item()))
+            return np.exp(splev(                                                           #CMS
+                xv, (self._splx[irow], np.log(self._sply[irow]), self._spln[irow].item())) #CMS
             )
         #   return splev(
         #       xv, (self._splx[irow], self._sply[irow], self._spln[irow].item())
