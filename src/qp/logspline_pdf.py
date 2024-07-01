@@ -83,7 +83,7 @@ def build_logsplines(xvals, yvals):
     return np.vstack(l_x), np.vstack(l_y), np.vstack(l_n)
 
 
-class spline_gen(Pdf_rows_gen):
+class logspline_gen(Pdf_rows_gen):
     """Spline based distribution
 
     Notes
