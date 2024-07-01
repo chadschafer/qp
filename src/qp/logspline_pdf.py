@@ -50,7 +50,7 @@ def normalize_spline(xvals, yvals, limits, **kwargs):
     return (yvals.T / integrals).T
 
 
-def build_splines(xvals, yvals):
+def build_logsplines(xvals, yvals):
     """
     Build a set of 1D spline representations
 
@@ -184,7 +184,7 @@ class spline_gen(Pdf_rows_gen):
         xmin = np.min(xvals)
         xmax = np.max(xvals)
         yvals = normalize_spline(xvals, yvals, limits=(xmin, xmax), **kwargs)
-        return build_splines(xvals, yvals)
+        return build_logsplines(xvals, yvals)
 
     @classmethod
     def create_from_xy_vals(cls, xvals, yvals, **kwargs):
