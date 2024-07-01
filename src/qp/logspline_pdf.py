@@ -110,7 +110,7 @@ class logspline_gen(Pdf_rows_gen):
 
     # pylint: disable=protected-access
 
-    name = "spline"
+    name = "logspline"
     version = 0
 
     _support_mask = rv_continuous._support_mask
