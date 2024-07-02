@@ -4,6 +4,7 @@ import os
 from .version import __version__
 
 from .spline_pdf import *
+from .logspline_pdf import *
 from .hist_pdf import *
 from .interp_pdf import *
 from .quant_pdf import *
