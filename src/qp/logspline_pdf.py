@@ -200,10 +200,10 @@ class logspline_gen(Pdf_rows_gen):
 
         Returns
         -------
-        pdf_obj : `spline_gen`
+        pdf_obj : `logspline_gen`
             The requested PDF
         """
-        splx, sply, spln = spline_gen.build_normed_splines(xvals, yvals, **kwargs)
+        splx, sply, spln = logspline_gen.build_normed_splines(xvals, yvals, **kwargs)
         gen_obj = cls(splx=splx, sply=sply, spln=spln)
         return gen_obj(**kwargs)
 
@@ -221,7 +221,7 @@ class logspline_gen(Pdf_rows_gen):
 
         Returns
         -------
-        pdf_obj : `spline_gen`
+        pdf_obj : `logspline_gen`
             The requested PDF
         """
         kdes = build_kdes(samples)
@@ -351,8 +351,8 @@ class logspline_gen(Pdf_rows_gen):
         )
 
 
-spline = spline_gen.create
-spline_from_xy = spline_gen.create_from_xy_vals
-spline_from_samples = spline_gen.create_from_samples
+spline = logspline_gen.create
+spline_from_xy = logspline_gen.create_from_xy_vals
+spline_from_samples = logspline_gen.create_from_samples
 
-add_class(spline_gen)
+add_class(logspline_gen)
