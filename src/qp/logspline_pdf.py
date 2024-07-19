@@ -12,7 +12,7 @@ from qp.factory import add_class
 from qp.pdf_gen import Pdf_rows_gen
 from qp.plotting import get_axes_and_xlims, plot_pdf_on_axes
 from qp.test_data import SAMPLES, TEST_XVALS, XARRAY, YARRAY
-from qp.utils import build_kdes, evaluate_kdes, reshape_to_pdf_size
+from qp.utils import build_kdes, evaluate_kdes, reshape_to_pdf_size, safelog, safeexp
 
 
 def normalize_spline(xvals, yvals, limits, **kwargs):
@@ -74,11 +74,11 @@ def build_logsplines(xvals, yvals):
     l_y = []
     l_n = []
     for xrow, yrow in zip(xvals, yvals):
-        rep = splrep(xrow, np.log(yrow)) # CMS
+        rep = splrep(xrow, safelog(yrow)) # CMS
     #   rep = splrep(xrow, yrow)
         l_x.append(rep[0])
     #   l_y.append(rep[1])
-        l_y.append(np.exp(rep[1]))  # CMS
+        l_y.append(safeexp(rep[1]))  # CMS
         l_n.append(rep[2])
     return np.vstack(l_x), np.vstack(l_y), np.vstack(l_n)
 
@@ -248,8 +248,8 @@ class logspline_gen(Pdf_rows_gen):
     def _pdf(self, x, row):
         # pylint: disable=arguments-differ
         def pdf_row(xv, irow):
-            return np.exp(splev(                                                           #CMS
-                xv, (self._splx[irow], np.log(self._sply[irow]), self._spln[irow].item())) #CMS
+            return safeexp(splev(                                                           #CMS
+                xv, (self._splx[irow], safelog(self._sply[irow]), self._spln[irow].item())) #CMS
             )
         #   return splev(
         #       xv, (self._splx[irow], self._sply[irow], self._spln[irow].item())

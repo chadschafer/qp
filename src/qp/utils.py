@@ -15,6 +15,24 @@ CASE_FACTOR = 1
 CASE_2D = 2
 CASE_FLAT = 3
 
+def safeexp(arr, threshold=500):
+    """
+    Limits how large exp of value can be. CMS Testing
+
+    Parameters
+    ----------
+    arr: numpy.ndarray, float
+        values to be exp'ed
+    threshold: float
+        large, positive value to cut off at (before exp)
+
+    Returns
+    -------
+    exped: numpy.ndarray
+        exp, threshholded
+    """
+    return np.exp(np.array(arr).clip(-np.inf,threshold))
+
 
 def safelog(arr, threshold=epsilon):
     """
