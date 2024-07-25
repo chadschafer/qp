@@ -234,11 +234,16 @@ def extract_mixmod_fit_samples(in_dist, **kwargs):
         stdevs = np.sqrt(estimator.covariances_[:, 0, 0])
         ov = np.vstack([weights, means, stdevs])
         return ov
-
+    
     vv = np.vectorize(mixmod_helper, signature="(%i)->(3,%i)" % (n_sample, n_comps))
     fit_vals = vv(samples)
+
+# THIS IS THE FIX THAT CMS ADDED
+    fit_vals = np.atleast_3d(fit_vals.T).T
+
     return dict(
-        weights=fit_vals[:, 0, :], means=fit_vals[:, 1, :], stds=fit_vals[:, 2, :]
+        weights=fit_vals[:, 0, :][0], means=fit_vals[:, 1, :][0], stds=fit_vals[:, 2, :][0]
+#       weights=fit_vals[:, 0, :], means=fit_vals[:, 1, :], stds=fit_vals[:, 2, :]
     )
 
 
