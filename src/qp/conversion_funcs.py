@@ -242,8 +242,8 @@ def extract_mixmod_fit_samples(in_dist, **kwargs):
     fit_vals = np.atleast_3d(fit_vals.T).T
 
     return dict(
-        weights=fit_vals[:, 0, :][0], means=fit_vals[:, 1, :][0], stds=fit_vals[:, 2, :][0]
-#       weights=fit_vals[:, 0, :], means=fit_vals[:, 1, :], stds=fit_vals[:, 2, :]
+#       weights=fit_vals[:, 0, :][0], means=fit_vals[:, 1, :][0], stds=fit_vals[:, 2, :][0]
+        weights=fit_vals[:, 0, :], means=fit_vals[:, 1, :], stds=fit_vals[:, 2, :]
     )
 
 
